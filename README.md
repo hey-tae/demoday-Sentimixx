@@ -2,7 +2,7 @@
 
 **link to project**
 
-![](recordpage.png)
+![](newrecordpage.png)
 ![](profilepage.png)
 
 
