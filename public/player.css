@@ -1,0 +1,28 @@
+body{
+    background-image: url('/assets/authbgnotape.png');
+  background-size: cover;
+}
+
+li{
+    list-style: none;
+}
+
+.casslogo img{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+
+h1{
+    font-size: 3rem;
+}
+audio{
+    margin-left: 10px;
+}
+  .playlist{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+  }

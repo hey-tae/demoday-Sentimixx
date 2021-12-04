@@ -1,3 +1,4 @@
+
 a {
     color: #337ab7;
   }
@@ -19,10 +20,16 @@ a {
       color:black;
       margin:2em;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      flex-direction: row;
+        background-image: url('/assets/bg/movedup3.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+
+      
+ 
+      /* justify-content: center;
       align-items: center;
-      margin: 0;
+      margin: 0; */
       
   }
   
@@ -56,7 +63,7 @@ p{
   } 
   
   button {
-    flex-grow: 1;
+    
     height: 3.5rem;
     min-width: 2rem;
     border: none;
@@ -95,9 +102,53 @@ p{
     margin-left: 0;
   }
   
+.record{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload form{
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+input{
+  margin-bottom: 15px;
+  
+}
+
+.preview{
+  display: flex;
+  flex-direction: row;
+}
+
+.trash{
+  font-size: 2rem;
+  margin: 15px 0 0 10px;
+}
+
+.share{
+  margin-top: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#inputFile{
+  margin-left: 12.5%;
+}
+
+
   audio {
     display: block;
-    width: 100%;
+    width: 75%;
     margin-top: 0.2rem;
   }
   
@@ -114,3 +165,19 @@ p{
   #recordingsList{
       max-width: 28em;
   }
+
+.saveYourPlay{
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+  margin-left: 15%;
+
+}
+
+.saveYourPlay button{
+  margin-right: 2%;
+}
+
+input{
+  padding: 5px;
+}

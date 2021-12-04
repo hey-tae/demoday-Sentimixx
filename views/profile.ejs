@@ -1,71 +1,70 @@
 <!doctype html>
 <html>
 <head>
-    <title>21 Savage Fan Site</title>
+    <title>Sentimixx Profile</title>
     <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/profile.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 </head>
 <body>
 <div class="container">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <h1><span class="fa fa-music"></span> Welcome Sentinent</h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
     <div class="row">
 
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
+        
+<section class="mainProfile">
 
-                <% if (user.local.email) { %>
-                    <p>
-                        <strong>id</strong>: <%= user._id %><br>
-                        <strong>email</strong>: <%= user.local.email %><br>
-                        <strong>password</strong>: <%= user.local.password %>
-                    </p>
-
-                    <a href="/unlink/local" class="btn btn-default">Unlink</a>
-                <% } else { %>
-                    <a href="/connect/local" class="btn btn-default">Connect Local</a>
-                <% } %>
-
-            </div>
-        </div>
-        <div class="col-sm-6">
-          <h3>Messages</h3>
-          <ul class="messages">
-          <% for(var i=0; i<messages.length; i++) {%>
-            <li class="message">
-              <span><%= messages[i].name %></span>
-              <span><%= messages[i].msg %></span>
-              <span><%= messages[i].thumbUp %></span>
-              <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
-              <span><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>
-              <span><i class="fa fa-trash" aria-hidden="true"></i></span>
-            </li>
-          <% } %>
-          </ul>
-
-          <h2>Add a message</h2>
-        <% if (user.local.email) { %>
-          <form action="/messages" method="POST">
-            <input type="text" value="<%= user.local.email %>" name="name">
-            <input type="text" placeholder="message" name="msg">
-            <button type="submit">Submit</button>
-          </form>
-        </div>
-        <% } %>
-<section>
-  
-</section>
+<div class="createNew">
+  <h3>Create A New Mix</h3>
+  <a href="/record">
+  <button>Create A Playlist</button>
+  </a>
 </div>
 
+<div class="savedLists">
+  <h3>Saved Playlists</h3>
+
+  <ul class="messages">
+    <% for(var i=0; i<savedList.length; i++) {%>
+      <li class="audio">
+     
+        <a href="/player/<%= savedList[i]._id %>">
+          <button><%= savedList[i].playlistname %> 
+            
+            
+          </button>
+          </a>
+
+
+      </li>
+    <% } %>
+
+    </ul>
+</div>
+
+
+
+</section>
+
+
+       
+
+</div>
+
+<div class="casslogo">
+  <img class="animate__animated animate__fadeInRightBig" src="/assets/casslogo.svg" width="450px" height="450px" alt="">
+</div>
 
 
 <script src="main.js"></script>

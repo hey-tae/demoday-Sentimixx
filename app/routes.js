@@ -45,17 +45,20 @@ app.get('/uploader', function(req, res) {
 
 //player
 app.get('/player/:id',function(req, res) {
-  db.collection('playlists').find({owner: ObjectId(req.params.id)}).sort( { date: -1 } ).toArray((err, audioFiles) => {
+  let playlistId = req.params.id
+  db.collection('fullplaylist').find({_id: ObjectId(playlistId)}).sort( { date: -1 } ).toArray((err, playlist) => {
+    db.collection('playlists').find().sort( { date: -1 } ).toArray((err, audioFiles) => {
     if (err) return console.log(err)
     res.render('player.ejs', {
       user : req.user,
+      playlist: playlist[0],
       audioFiles: audioFiles
     })
-  })
+  })})
 });
 
 // upload audio to server 
-app.post('/upload',[isLoggedIn, upload.single('audio_data')], function(req, res) {
+app.post('/upload',[upload.single('audio_data')], function(req, res) {
   const audioData = fs.readFileSync(path.join(__dirname + '/../uploads/' + req.file.filename))
   console.log(audioData.length, req.file.filename)
   console.log(req.body.type)
@@ -65,7 +68,8 @@ app.post('/upload',[isLoggedIn, upload.single('audio_data')], function(req, res)
     type: req.body.type ? req.body.type : 'sentiment',
     owner: req.user._id,
     title: req.file.filename,
-    date: new Date()
+    date: new Date(),
+    saved: false
 
   }, (err, result) => {
     if (err) return console.log(err)
@@ -74,14 +78,37 @@ app.post('/upload',[isLoggedIn, upload.single('audio_data')], function(req, res)
   })
 });
 
+//save playlist to profile 
+
+app.post('/savePlaylist', function(req, res) {
+  let arr = req.body.saved
+  let saved = arr.map(e=>ObjectID(e))
+  db.collection('fullplaylist').save({
+    saved: saved,
+    playlistname: req.body.playlistname,
+    owner: req.user._id,
+    date: new Date()
+
+  }, (err, result) => {
+    if (err) return console.log(err)
+    console.log('saved to database')
+    res.send(200)
+  })
+});
+
+
+
+
 
     // PROFILE SECTION =========================
-    app.get('/profile', isLoggedIn, function(req, res) {
-        db.collection('messages').find().toArray((err, result) => {
+    app.get('/profile',function(req, res) {
+        db.collection('fullplaylist').find({owner: req.user._id}).toArray((err, result) => {
           if (err) return console.log(err)
+          console.log(result)
           res.render('profile.ejs', {
             user : req.user,
-            messages: result
+            savedList: result
+          
           })
         })
     });
@@ -102,15 +129,15 @@ app.post('/upload',[isLoggedIn, upload.single('audio_data')], function(req, res)
       })
     })
 
-    app.put('/messages', (req, res) => {
-      db.collection('messages')
-      .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
+    app.put('/savedToPlaylist', (req, res) => {
+      db.collection('playlist')
+      .findOneAndUpdate({_id: ObjectId(req.body.id)}, {
         $set: {
-          thumbUp:req.body.thumbUp + 1
+          saved:  true
         }
       }, {
         sort: {_id: -1},
-        upsert: true
+        upsert: false
       }, (err, result) => {
         if (err) return res.send(err)
         res.send(result)
