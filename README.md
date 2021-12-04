@@ -1,10 +1,10 @@
-# sav auth
+# Sentimixx
 
 **link to project**
 
-![](shot1.png)
-![](shot2.png)
-![](shot3.png)
+![](photo)
+![](photo)
+![](photo)
 
 ### How It’s Made
 express framework, nodemon, vs code, passport, mongoose , and faith that I can do anything. 
