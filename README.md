@@ -15,10 +15,6 @@ Javascript, HTML5, CSS3, express.js and node.js
 
 ### optimizations
 
-I think the main optimization that I can come up with is separating the message board page along
+I would like to use the soundcloud api to upload tracks and search for audio tracks to include them in a named playlist. taking the upload feature off of the site as it stands would free up more space within the app 
 
 ### Lessons Learned
-Trying to understand every how every little gear in the project spins may stop you from fixing the actual clock
-——
-This project was a lesson in telling myself when to focus on understanding the functionality and when to focus on the bigger picture. I was too caught up with trying to focus on how every little piece of the function works instead of focusing on how the larger parts work together to give you a desired result. 
-~~~~also simpler, how to create a like and dislike and delete feature and how to do create logins and sign ups while using Passport.
